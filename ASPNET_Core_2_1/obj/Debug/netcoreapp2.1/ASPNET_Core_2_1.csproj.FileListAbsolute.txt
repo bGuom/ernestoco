@@ -170,7 +170,6 @@ E:\MicroServiceWebApp\ernestoco\ASPNET_Core_2_1\obj\Debug\netcoreapp2.1\ASPNET_C
 E:\MicroServiceWebApp\ernestoco\ASPNET_Core_2_1\obj\Debug\netcoreapp2.1\ASPNET_Core_2_1.TagHelpers.output.cache
 E:\MicroServiceWebApp\ernestoco\ASPNET_Core_2_1\obj\Debug\netcoreapp2.1\ASPNET_Core_2_1.RazorCoreGenerate.cache
 E:\MicroServiceWebApp\ernestoco\ASPNET_Core_2_1\obj\Debug\netcoreapp2.1\Razor\Views\Account.g.cshtml.cs
-E:\MicroServiceWebApp\ernestoco\ASPNET_Core_2_1\obj\Debug\netcoreapp2.1\Razor\Views\Account\Login.g.cshtml.cs
 E:\MicroServiceWebApp\ernestoco\ASPNET_Core_2_1\obj\Debug\netcoreapp2.1\Razor\Views\Account\Register.g.cshtml.cs
 E:\MicroServiceWebApp\ernestoco\ASPNET_Core_2_1\obj\Debug\netcoreapp2.1\Razor\Views\AppViews\ActivityStream.g.cshtml.cs
 E:\MicroServiceWebApp\ernestoco\ASPNET_Core_2_1\obj\Debug\netcoreapp2.1\Razor\Views\AppViews\Article.g.cshtml.cs
@@ -311,3 +310,4 @@ E:\MicroServiceWebApp\ernestoco\ASPNET_Core_2_1\obj\Debug\netcoreapp2.1\ASPNET_C
 E:\MicroServiceWebApp\ernestoco\ASPNET_Core_2_1\obj\Debug\netcoreapp2.1\ASPNET_Core_2_1.dll
 E:\MicroServiceWebApp\ernestoco\ASPNET_Core_2_1\obj\Debug\netcoreapp2.1\ASPNET_Core_2_1.pdb
 E:\MicroServiceWebApp\ernestoco\ASPNET_Core_2_1\obj\Debug\netcoreapp2.1\ASPNET_Core_2_1.csproj.CopyComplete
+E:\MicroServiceWebApp\ernestoco\ASPNET_Core_2_1\obj\Debug\netcoreapp2.1\Razor\Views\AppViews\Login.g.cshtml.cs

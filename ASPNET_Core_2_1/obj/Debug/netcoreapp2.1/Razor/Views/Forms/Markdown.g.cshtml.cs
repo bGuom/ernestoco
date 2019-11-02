@@ -287,12 +287,12 @@ $(""#some-textarea"").markdown({autofocus:false,savable:false}) </pre>
                 WriteLiteral("\r\n    ");
                 EndContext();
                 BeginContext(9520, 169, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("environment", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "917231ca08a64ad1b455fffca9e3d098", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("environment", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "36f4fd3f409d46cead5d89cfec1f3b81", async() => {
                     BeginContext(9571, 10, true);
                     WriteLiteral("\r\n        ");
                     EndContext();
                     BeginContext(9581, 88, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "6f8bd1a0779443428c6e71dfbe9b8453", async() => {
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "23bdeb1ec6084324886d6ad72dd49cbb", async() => {
                     }
                     );
                     __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -337,12 +337,12 @@ $(""#some-textarea"").markdown({autofocus:false,savable:false}) </pre>
                 WriteLiteral("\r\n    ");
                 EndContext();
                 BeginContext(9722, 218, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("environment", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f91e38d29a2344b093eeedeefbe34670", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("environment", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "07eb7b0cec5e4fde80c0f700e297760b", async() => {
                     BeginContext(9773, 10, true);
                     WriteLiteral("\r\n        ");
                     EndContext();
                     BeginContext(9783, 73, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f74af575a53c442cbaa9bb67c0c35f9a", async() => {
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b183b030737646aba09f510f2334f4e9", async() => {
                     }
                     );
                     __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -360,7 +360,7 @@ $(""#some-textarea"").markdown({autofocus:false,savable:false}) </pre>
                     WriteLiteral("\r\n        ");
                     EndContext();
                     BeginContext(9866, 54, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8d6c6ed9fe684e3c9e33ec5b1dc59edc", async() => {
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e47a281ad4504684960c6386075e31d5", async() => {
                     }
                     );
                     __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();

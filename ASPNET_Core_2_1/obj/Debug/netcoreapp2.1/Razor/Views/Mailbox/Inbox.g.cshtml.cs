@@ -165,7 +165,7 @@ WriteAttributeValue("", 1245, Url.Action("Inbox", "Mailbox"), 1245, 31, false);
                 ");
             EndContext();
             BeginContext(3128, 534, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ee21e4755f8d4121b7f0873e78d911ed", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "bcb5b4a0e4ed4a58bd7d32e5a812c86b", async() => {
                 BeginContext(3190, 465, true);
                 WriteLiteral(@"
                     <div class=""input-group"">
@@ -767,12 +767,12 @@ WriteAttributeValue("", 17044, Url.Action("EmailView", "Mailbox"), 17044, 35, fa
                 WriteLiteral("\r\n");
                 EndContext();
                 BeginContext(17435, 130, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("environment", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e60e8da480e84c159fc0909f735c64c3", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("environment", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b71682b450dd4958a7604ce32efb2807", async() => {
                     BeginContext(17487, 6, true);
                     WriteLiteral("\r\n    ");
                     EndContext();
                     BeginContext(17493, 56, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "4130eed1b67f4a38b8c3ed095c9c9511", async() => {
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "b4378428832e45c2bee336672f837579", async() => {
                     }
                     );
                     __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -817,12 +817,12 @@ WriteAttributeValue("", 17044, Url.Action("EmailView", "Mailbox"), 17044, 35, fa
                 WriteLiteral("\r\n    ");
                 EndContext();
                 BeginContext(17596, 132, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("environment", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f08f98642f244232a5a9392ffa31de85", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("environment", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2ff7a9240d3a4cc4b79904d75629959e", async() => {
                     BeginContext(17648, 10, true);
                     WriteLiteral("\r\n        ");
                     EndContext();
                     BeginContext(17658, 50, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "83e76e04336340bfb124862e7cda5f82", async() => {
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "89fafc53424c46f8aedd24d4b50c3758", async() => {
                     }
                     );
                     __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
