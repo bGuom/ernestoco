@@ -12,5 +12,15 @@ namespace ASPNET_Core_2_1.Controllers
         {
             return View();
         }
+
+        public IActionResult MyEnvironments()
+        {
+            return View();
+        }
+
+        public IActionResult CreateEnvironment()
+        {
+            return View();
+        }
     }
 }

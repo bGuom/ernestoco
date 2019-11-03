@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ASPNET_Core_2_1.Controllers
 {
-    public class SettingController : Controller
+    public class SettingsController : Controller
     {
         public IActionResult Index()
         {
