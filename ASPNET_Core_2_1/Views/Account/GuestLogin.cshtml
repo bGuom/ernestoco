@@ -7,21 +7,19 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewBag.SITE_NAME  - Register</title>
+    <title>@ViewBag.SITE_NAME  - Guest Login</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <environment names="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.css" />
         <link rel="stylesheet" href="~/css/animate.css" />
-        <link rel="stylesheet" href="~/lib/toastr/toastr.css" />
         <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
     </environment>
     <environment names="Staging,Production">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css" />
         <link rel="stylesheet" href="~/css/animate.css" />
-        <link rel="stylesheet" href="~/lib/toastr/toastr.min.css" />
         <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
     </environment>
 
@@ -29,25 +27,14 @@
 </head>
 <body class="gray-bg">
     <input type="hidden" id="auth_api_url" value="@ViewBag.AUTH_SERVICE_API" />
-
     <div id="app">
-        <register-component login-url='@Url.Action("Login", "Account")'
-                            index-url='@Url.Action("Login","Account")'>
-        </register-component>
+        <guest-login-component login-url='@Url.Action("Login", "Account")'
+                               index-url='@(ViewBag.ReturnUrl ?? Url.Action("Index","Dashboard"))'
+                               login-confirm="@Url.Action("LoginConfirmed", "Account")">
+        </guest-login-component>
     </div>
-
     <script src='@Url.Content("~/bundle/account.js")' asp-append-version="true"></script>
-    <environment names="Development">
-        <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/lib/toastr/toastr.js"></script>
-    </environment>
-    <environment names="Staging,Production">
-        <script src="~/lib/jquery/dist/jquery.min.js"></script>
-        <script src="~/lib/toastr/toastr.min.js"></script>
-    </environment>
 </body>
 
+
 </html>
-
-
-    

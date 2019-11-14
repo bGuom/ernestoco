@@ -1,0 +1,262 @@
+﻿@{
+    var controllerName = this.ViewContext.RouteData.Values["controller"].ToString();
+    var actionName = this.ViewContext.RouteData.Values["action"].ToString();
+
+    var settingsSections = new List<string>(){  "Vendor", "CodeFormats", "StorageLocation" };
+    var isSettingsCollapsed = settingsSections.Contains(controllerName);
+
+    var reportsSections = new List<string>() { "Reports", "StockUse", "StockDiscard" };
+    var isReportsCollapsed = reportsSections.Contains(controllerName);
+
+    var features = new List<String>() { "Environments", "Library", "Users", "Audits", "Settings", "Contact" , "Admin"};
+    var organizationCode = Context.Items["organizationCode"] as string;
+    var organizationName = Context.Items["organizationName"] as string;
+    var user = Context.Items["user"] as ASPNET_Core_2_1.Models.UserResourceModel;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - .NET Core 2.1</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Add local styles, mostly for plugins css file -->
+    @if (IsSectionDefined("Styles"))
+    {@RenderSection("Styles", required: false)}
+
+    <environment names="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.css" />
+        <link rel="stylesheet" href="~/css/animate.css" />
+        <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
+    </environment>
+    <environment names="Staging,Production">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="~/css/animate.css" />
+        <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
+    </environment>
+
+
+</head>
+<body>
+
+    <!-- Skin configuration box -->
+    <!-- <partial name="_SkinConfig" /> -->
+    <!-- Wrapper-->
+    <div id="wrapper" class="@Html.PageClass()">
+
+        <!-- Navigation -->
+        <partial name="_Navigation" />
+
+        <!-- Page wraper -->
+        <div id="page-wrapper" class="gray-bg @ViewBag.SpecialClass">
+
+            <!-- Top Navbar -->
+            <partial name="_TopNavbar" />
+
+            <!-- Main view  -->
+            @RenderBody()
+
+            <!-- Footer -->
+            <partial name="_Footer" />
+
+        </div>
+        <!-- End page wrapper-->
+        <!-- Right Sidebar -->
+        <partial name="_RightSidebar" />
+
+    </div>
+    <!-- End wrapper-->
+
+    <environment names="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/Popper/popper.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/lib/metisMenu/dist/jquery.metisMenu.js"></script>
+        <script src="~/lib/slimScroll/jquery.slimscroll.js"></script>
+        <script src="~/lib/pace/pace.js"></script>
+        <script src="~/js/script.js" asp-append-version="true"></script>
+
+        <!-- Only for demo purpose -->
+        <script src="~/js/skin.config.js"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/Popper/popper.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="~/lib/metisMenu/dist/jquery.metisMenu.js"></script>
+        <script src="~/lib/pace/pace.min.js"></script>
+        <script src="~/lib/slimScroll/jquery.slimscroll.min.js"></script>
+        <script src="~/js/script.js" asp-append-version="true"></script>
+    </environment>
+
+    <script src='@Url.Content("~/bundle/layout.js")' asp-append-version="true"></script>
+    @RenderSection("scripts", required: false)
+
+
+    <script>
+    $cookies.set("timer", Date.now()); // update timer when login
+    document.documentElement.addEventListener("click", resetVariable);
+    document.documentElement.addEventListener("keydown", resetVariable);
+    function resetVariable() {
+        $cookies.set("timer", Date.now());
+    }
+    let logOutInterval = Number("@ViewBag.LogOutInterval")*60000; // minutes in settings.json
+    let functionRefreshInterval = Number("@ViewBag.FunctionRefreshTimer")*1000; // seconds in settings.josn
+    let periodicStart = setInterval(showAlert, functionRefreshInterval);
+        function showAlert() {
+        if (Date.now() - $cookies.get("timer") > logOutInterval) {
+            clearInterval(periodicStart);
+            document.getElementById("alert").setAttribute(
+                "style", "font-size:16px; padding: 10px; position:fixed; top:10px; right: 30px; z-index: 100;"
+            );
+
+            let alertTimer = Number("@ViewBag.AlertTimer");
+            document.getElementById("alert").innerHTML = "Starting logout timer due to inactivity";
+            document.getElementById("alert").style.display="block";
+            let dangerIcon = `<i class="fas fa-exclamation-circle"></i>`;
+            let banIcon = `<i class="fas fa-ban"></i>`;
+            let logoutMessage = `${dangerIcon} You will be logged out after`;
+            let cancelMessage = `. ${banIcon} Press any key to cancel`;
+
+            let alertStart = setInterval(function(){
+
+                document.getElementById("alert").innerHTML = `${logoutMessage} ${alertTimer} seconds ${cancelMessage}`;
+                alertTimer--;
+
+                if (Date.now() - $cookies.get("timer") < logOutInterval) {
+                    clearInterval(alertStart);
+                    periodicStart = setInterval(showAlert, functionRefreshInterval);
+                    document.getElementById("alert").style.display = "none";
+                    return;
+                }
+
+                if (alertTimer < 0) {
+                    logout();
+                }
+            }, 1000);
+        }
+    }
+
+    var allSectionIds = [];
+    var isSettingsCollapsed = @isSettingsCollapsed.ToString().ToLower();
+    var isReportsCollapsed = @isReportsCollapsed.ToString().ToLower();
+    var isMenuHidden = true;
+    var currentUser = JSON.parse(getCookie("currentUser"));
+
+    (function() {
+      this.allSectionIds = document.querySelectorAll('section[id]');
+      document.getElementById("userFullName").innerHTML = this.currentUser.name;
+    })();
+
+    function setSettingsCollapsed(nextValue) {
+        isSettingsCollapsed = nextValue;
+        var collapsibleSettings = document.getElementById("collapsibleSettings");
+        collapsibleSettings.style.display = isSettingsCollapsed ? "block" : "none";
+
+        var collapsibleSettings = document.getElementById("leftNavCogsArrow");
+        collapsibleSettings.classList.remove(!isSettingsCollapsed ? "fa-angle-up" : "fa-angle-down");
+        collapsibleSettings.classList.add(isSettingsCollapsed ? "fa-angle-up" : "fa-angle-down");
+    }
+
+    function setReportsCollapsed(nextValue) {
+        isReportsCollapsed = nextValue;
+        var collapsibleReports = document.getElementById("collapsibleReports");
+        collapsibleReports.style.display = isReportsCollapsed ? "block" : "none";
+
+        var collapsibleReports = document.getElementById("leftNavCogsArrowReports");
+        collapsibleReports.classList.remove(!isReportsCollapsed ? "fa-angle-up" : "fa-angle-down");
+        collapsibleReports.classList.add(isReportsCollapsed ? "fa-angle-up" : "fa-angle-down");
+    }
+
+        function ChangeIcon(id, from, to) {
+            var el = document.getElementById(id);
+            el.classList.remove(from);
+            el.classList.add(to);
+        }
+
+    function showHideMenu() {
+        this.isMenuHidden = !this.isMenuHidden;
+        if (!this.isMenuHidden) {
+            document.getElementById("topCompressed").style.display = "none";
+            document.getElementById("topExpanded").style.display = "block";
+            document.getElementById("sidenav").className = "sidenav sidenav-detail";
+            document.getElementById("sidenav-content").className = "sidenav-content sidenav-content-detail collapsible";
+            let nodes = document.querySelectorAll(".leftNavLabel");
+            nodes.forEach(function (node) {
+                node.style.display = "inline";
+            });
+            if (document.getElementById("leftNavCogs") != null)
+                document.getElementById("leftNavCogs").style.display = "none";
+            document.getElementById("logoutButton").classList.remove("sideNavLogoutTiny");
+        } else {
+            document.getElementById("topCompressed").style.display = "block";
+            document.getElementById("topExpanded").style.display = "none";
+            document.getElementById("sidenav").className = "sidenav";
+            document.getElementById("sidenav-content").className = "sidenav-content collapsible";
+            let nodes = document.querySelectorAll(".leftNavLabel");
+            nodes.forEach(function (node) {
+                node.style.display = "none";
+            });
+            if (document.getElementById("leftNavCogs") != null)
+                document.getElementById("leftNavCogs").style.display = "block";
+            document.getElementById("logoutButton").classList.add("sideNavLogoutTiny");
+        }
+    }
+
+    function logout() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4) {
+                localStorage.removeItem("currentUser");
+                setCookie('token', '', -1);
+                setCookie('organizationCode', '', -1);
+                setCookie('currentUser', '', -1);
+
+                window.location.href = '@Url.Action("Logout", "Account")';
+            }
+        };
+        xhttp.open("DELETE", document.getElementById('account_url').value, true);
+        xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.setRequestHeader("Authorization", "Bearer " + getCookie('token'));
+        xhttp.send();
+    }
+
+    function setCookie(cname, cvalue, exdays) {
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+        var expires = "expires=" + d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    }
+
+    function getCookie(cname) {
+        var name = cname + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+
+    var brd = document.getElementById('breadcumb_path');
+    var pat = document.getElementsByClassName('sec-active');
+        if (pat != null && pat.length > 0 && brd != null) {
+            var alt = pat[0].childNodes[0].childNodes[2].getAttribute('alt');
+            var ctrl = alt != undefined ? alt : pat[0].childNodes[0].childNodes[2].innerText;
+            brd.innerHTML = '<a href="@Url.Action("Index", controllerName)">' + (ctrl) + '</a><span>/</span>' +
+            '<a href="@Url.Action(actionName, controllerName)">@actionName</a>';
+    }
+    </script>
+
+</body>
+</html>

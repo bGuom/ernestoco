@@ -1,13 +1,17 @@
 ﻿@{
     Layout = null;
 }
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="google-signin-client_id" content="@ViewBag.GoogleClientId">
+    <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAJNQTFRFAAAAdoB2lJ6UWGFXWGFXWGFXWGFXWGFXWGFXWGFXWGFXWGFXWGFXWGFXdoB2doB2lJ6UdoB2doB2doB2doB2doB2lJ6UlJ6UlJ6UdoB2doB2doB2doB2lJ6UlJ6UlJ6UlJ6UlJ6UlJ6UlJ6UWGFXWGFXWGFXdoB2doB2doB2doB2doB2doB2WGFXdoB2lJ6U////xvp0UwAAAC10Uk5TAAAA5f3k3sfvSR0a7TICAQIrm6B6BhiQoEX3wgom5u56ZuIhbGQVJWD45ez+qhGg+gAAAAFiS0dEMK7cLeQAAAAJcEhZcwAACxMAAAsTAQCanBgAAAB8SURBVDjL7crHFoIwFAXAG3uNJSqIBUvs3vj/f8cCUPD4WHlk46wHLFbFj0Kt3pA0QZKtdkfSBUn2+lBaaz1QqAzfpGE0NsZMpph5fl4a5oFzbrHEav3IKyuEm+3Tx7Db4+UfvhWstfZwLAgJOZxi54sUrrHbXQouo6QQAWVobOQiUYF8AAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDE4LTAyLTEyVDA3OjEwOjE4KzAwOjAw9DAGfwAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxOC0wMi0xMlQwNzoxMDoxOCswMDowMIVtvsMAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAAAAElFTkSuQmCC" sizes="32x32" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - MVC6_Seed_Project</title>
+    <title>@ViewBag.SITE_NAME - Login</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <environment names="Development">
@@ -23,71 +27,93 @@
         <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
     </environment>
 
-
-
+    <title>Ernestoco Login</title>
+    <style>
+        .version-label {
+            position: absolute;
+            right: 25px;
+            bottom: 20px;
+            background-color: #323d48;
+            padding: 7px 10px;
+            color: white;
+            z-index: 10;
+            border-radius: 3px;
+            font-size: 13px;
+        }
+    </style>
 </head>
 <body class="gray-bg">
-
-    <div class="loginColumns animated fadeInDown">
-        <div class="row">
-
-            <div class="col-md-6">
-                <h2 class="font-bold">Welcome to IN+</h2>
-
-                <p>
-                    Perfectly designed and precisely prepared admin theme with over 50 pages with extra new web app views.
-                </p>
-
-                <p>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
-                </p>
-
-                <p>
-                    When an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                </p>
-
-                <p>
-                    <small>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</small>
-                </p>
-
-            </div>
-            <div class="col-md-6">
-                <div class="ibox-content">
-                    <form class="m-t" role="form" action="index.html">
-                        <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Username" required="">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Password" required="">
-                        </div>
-                        <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
-
-                        <a href="#">
-                            <small>Forgot password?</small>
-                        </a>
-
-                        <p class="text-muted text-center">
-                            <small>Do not have an account?</small>
-                        </p>
-                        <a class="btn btn-sm btn-white btn-block" href="register.html">Create an account</a>
-                    </form>
-                    <p class="m-t">
-                        <small>Inspinia we app framework base on Bootstrap 3 &copy; 2014</small>
-                    </p>
-                </div>
-            </div>
-        </div>
-        <hr />
-        <div class="row">
-            <div class="col-md-6">
-                Copyright Example Company
-            </div>
-            <div class="col-md-6 text-right">
-                <small>© 2014-2015</small>
-            </div>
-        </div>
+    <noscript>
+        <strong>We're sorry but Ernestoco doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+    <input type="hidden" id="auth_api_url" value="@ViewBag.AUTH_SERVICE_API" />
+    <input type="hidden" id="gtoken_login" value="@ViewBag.GOOGLE_AUTH_URL" />
+    <div id="app">
+        <login-component v-bind:login="{username: '', password: ''}"
+                         login-url='@Url.Action("Login", "Account")'
+                         guest-login-url='@Url.Action("GuestLogin", "Account")'
+                         forgot-url='@Url.Action("ForgotPassword", "Account")'
+                         index-url='@(ViewBag.ReturnUrl ?? Url.Action("Index","Dashboard"))'
+                         login-confirm="@Url.Action("LoginConfirmed", "Account")">
+        </login-component>
+    </div>
+    <div class="version-label">
+        <label>@ViewBag.Version</label>
     </div>
 
-</body>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src='@Url.Content("~/bundle/account.js")' asp-append-version="true"></script>
 
+    <script>
+        function setCookie(cname, cvalue, exdays) {
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            var expires = "expires=" + d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+
+        function loginConfirm(_data) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function (event) {
+                if (this.readyState == 4 && this.status == 200) {
+                    var data = JSON.parse(this.response);
+                    if (data.success) {
+                        signOut();
+                        window.location.href = "@Url.Action("Login0")";
+                    }
+                }
+            };
+            xhttp.open("POST", '@Url.Action("LoginConfirmed")', true);
+            xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xhttp.send(JSON.stringify(_data));
+        }
+
+        function onSignIn(googleUser) {
+            if (googleUser === null)
+                return;
+            var profile = googleUser.getBasicProfile();
+            console.log(profile);
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function (event) {
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log(this.response);
+                    var data = JSON.parse(this.response);
+                    var userObj = JSON.stringify(data.thisuser);
+                    setCookie("token", data.token, data.expiration);
+                    setCookie("currentUser", userObj, 1);
+                    localStorage.setItem("currentUser", userObj);
+                    loginConfirm(data);
+                }
+            };
+            xhttp.open("POST", document.getElementById('gtoken_login').value, true);
+            xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xhttp.send(JSON.stringify({ token: googleUser.getAuthResponse().id_token }));
+        }
+
+        function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut();
+        }
+    </script>
+</body>
 </html>
