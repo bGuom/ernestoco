@@ -1,9 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
-	<Target Name="PrepublishScript" BeforeTargets="PrepareForPublish">
-		<Exec Command="npm install" />
-		<Exec Command="npm run production" />
-	</Target>
+
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
